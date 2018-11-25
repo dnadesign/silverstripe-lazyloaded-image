@@ -1,0 +1,11 @@
+---
+Name: lazyloadedimage
+---
+
+SilverStripe\Assets\Image:
+  extensions:
+    - DNADesign\LazyloadedImage\LazyloadedImageExtension
+
+SilverStripe\Assets\Storage\DBFile:
+  extensions:
+    - DNADesign\LazyloadedImage\LazyloadedImageExtension
