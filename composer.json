@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "DNADesign\\LazyloadedImage\\": "src/"
+            "DNADesign\\Images\\": "src/"
         }
     },
     "extra": {
