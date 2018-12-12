@@ -111,13 +111,31 @@ class MultipleSizeImage extends DataObject
 			$size = $this->getSmallestSize();
 		}
 
-		if ($size) {		
+		if ($size) {
 			$availableSizes = $this->getSizesForRequestedImage($size);
 			foreach($availableSizes as $size) {
 				$image = $this->Images()->filter('Size', $size)->First();
 				if ($image && $image->exists()) {
 					return $image;
 				}
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	* Returns the largest image or a the largest of its size down
+	*
+	* @return Image
+	*/
+	public function getLargestImage()
+	{
+		$availableSizes = array_reverse($this->getSizesForRequestedImage($this->getSmallestSize()));
+		foreach($availableSizes as $size) {
+			$image = $this->Images()->filter('Size', $size)->First();
+			if ($image && $image->exists()) {
+				return $image;
 			}
 		}
 
