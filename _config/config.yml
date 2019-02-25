@@ -4,8 +4,8 @@ Name: lazyloadedimage
 
 SilverStripe\Assets\Image:
   extensions:
-    - DNADesign\LazyloadedImage\LazyloadedImageExtension
+    - DNADesign\Images\Extensions\LazyloadedImageExtension
 
 SilverStripe\Assets\Storage\DBFile:
   extensions:
-    - DNADesign\LazyloadedImage\LazyloadedImageExtension
+    - DNADesign\Images\Extensions\LazyloadedImageExtension
