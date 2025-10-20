@@ -42,7 +42,7 @@ class SizedImage extends DataObject
   /**
   * This object should exists only if it has an image
   */
-  public function exists()
+  public function exists(): bool
   {
     return $this->Image() && $this->Image()->exists();
   }
@@ -50,7 +50,7 @@ class SizedImage extends DataObject
   /**
   * Render normal image by default
   */
-  public function forTemplate()
+  public function forTemplate(): string
   {
     return ($this->Image()->exists()) ? $this->Image()->fortemplate() : '';
   }
