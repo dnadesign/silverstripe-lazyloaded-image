@@ -2,9 +2,9 @@
 
 namespace DNADesign\Images\Models;
 
-use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\ArrayList;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\Model\List\ArrayList;
 use DNADesign\Images\Models\SizedImage;
 use DNADesign\Images\Models\LazyloadedImage;
 
