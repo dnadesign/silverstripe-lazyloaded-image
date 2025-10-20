@@ -186,7 +186,7 @@ class MultipleSizeImage extends DataObject
 		return (isset($sizes[0])) ? $sizes[0] : '';
 	}
 
-	public function forTemplate()
+	public function forTemplate(): string
 	{
 		return $this->renderWith(self::class);
 	}
