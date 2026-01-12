@@ -6,7 +6,6 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\ArrayList;
 use DNADesign\Images\Models\SizedImage;
-use DNADesign\Images\Models\LazyloadedImage;
 
 class MultipleSizeImage extends DataObject
 {
@@ -51,7 +50,7 @@ class MultipleSizeImage extends DataObject
 			$images = $fields->dataFieldByName('Images');
 			$fields->addFieldToTab('Root.Main', $images);
 		} else {
-			$fields->removeByname('Images');
+			$fields->removeByName('Images');
 			$warning = LiteralField::create('warning', '<span class="message warning">Please save the object before adding an image.</span>');
 
 			$fields->addFieldToTab('Root.Main', $warning);
@@ -186,7 +185,7 @@ class MultipleSizeImage extends DataObject
 		return (isset($sizes[0])) ? $sizes[0] : '';
 	}
 
-	public function forTemplate()
+	public function forTemplate(): string
 	{
 		return $this->renderWith(self::class);
 	}

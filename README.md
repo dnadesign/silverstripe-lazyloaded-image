@@ -6,7 +6,7 @@ This module implements the LQIP (Low Quality Image Placeholder) pattern (combine
 
 ## Requirements
 
-* SilverStripe 4
+- SilverStripe 6
 
 ## Installation
 
