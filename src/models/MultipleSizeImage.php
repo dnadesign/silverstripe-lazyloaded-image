@@ -2,9 +2,9 @@
 
 namespace DNADesign\Images\Models;
 
+use SilverStripe\Model\List\ArrayList;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\ArrayList;
 use DNADesign\Images\Models\SizedImage;
 
 class MultipleSizeImage extends DataObject
@@ -64,8 +64,8 @@ class MultipleSizeImage extends DataObject
 		parent::onBeforeWrite();
 
 		if ($this->Images()->Count() == 0) {
-			foreach($this->config()->sizes as $size => $rule) {
-				$image = new SizedImage();
+			foreach($this->config()->get('sizes') as $size => $rule) {
+				$image = SizedImage::create();
 				$image->Size = $size;
 				$image->Rule = $rule;
 				$image->write();
@@ -92,7 +92,7 @@ class MultipleSizeImage extends DataObject
 			}
 		}
 
-		return new ArrayList($images);
+		return ArrayList::create($images);
 	}
 
 	/**
@@ -152,19 +152,19 @@ class MultipleSizeImage extends DataObject
 	*/
 	private function getSizesForRequestedImage($size)
 	{
-		$sizes = array_map('strtolower', array_keys($this->config()->sizes));
-		$requestedSize = strtolower($size);
+		$sizes = array_map(strtolower(...), array_keys($this->config()->get('sizes')));
+		$requestedSize = strtolower((string) $size);
 
 		if ($size && in_array($size, $sizes)) {
 			$index = array_search($size, $sizes);
-			$condition = ($this->config()->mobile_first == true) ? '>= '.$index : '<= '.$index;
+			$condition = ($this->config()->get('mobile_first') == true) ? '>= '.$index : '<= '.$index;
 
 			$sizesfallbacks = array_filter($sizes, function($item, $key) use ($condition) {
 				$check = sprintf('return %s %s;', $key, $condition);
 				return eval($check);
 			}, ARRAY_FILTER_USE_BOTH);
 
-			return ($this->config()->mobile_first == true) ? $sizesfallbacks : array_reverse($sizesfallbacks);
+			return ($this->config()->get('mobile_first') == true) ? $sizesfallbacks : array_reverse($sizesfallbacks);
 		}
 
 		return [];
@@ -175,14 +175,14 @@ class MultipleSizeImage extends DataObject
 	*/
 	public function getLargestSize()
 	{
-		$sizes = array_keys($this->config()->sizes);
+		$sizes = array_keys($this->config()->get('sizes'));
 		return end($sizes);
 	}
 
 	public function getSmallestSize()
 	{
-		$sizes = array_keys($this->config()->sizes);
-		return (isset($sizes[0])) ? $sizes[0] : '';
+		$sizes = array_keys($this->config()->get('sizes'));
+		return $sizes[0] ?? '';
 	}
 
 	public function forTemplate(): string

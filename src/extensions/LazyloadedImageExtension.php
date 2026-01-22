@@ -13,8 +13,8 @@ class LazyloadedImageExtension extends Extension
     Requirements::javascript('dnadesign/silverstripe-lazyloaded-image:client/javascript/ls.blur-up.min.js');
     Requirements::css('dnadesign/silverstripe-lazyloaded-image:client/css/lazysizes-blur.css');
 
-    return $this->owner->customise([
-      'LQIP' => $this->owner->Quality(20)
+    return $this->getOwner()->customise([
+      'LQIP' => $this->getOwner()->Quality(20)
     ])->renderWith('Includes/LazyloadedImage');
   }
 }

@@ -10,9 +10,16 @@
     ],
     "license": "MIT",
     "require": {
-        "silverstripe/framework": "^6.0",
-        "chrometoaster/silverstripe-image-quality": "^1.1"
+        "php": "^8.3",
+        "chrometoaster/silverstripe-image-quality": "dev-silverstripe-6 as 2.0.0",
+        "silverstripe/framework": "^6.0"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:dnadesign/silverstripe-image-quality.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "DNADesign\\Images\\": "src/"
@@ -23,5 +30,20 @@
         "expose": [
             "client"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "silverstripe/vendor-plugin": true,
+            "phpstan/extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "require-dev": {
+        "cambis/silverstan": "^2.1",
+        "cambis/silverstripe-rector": "^2.1",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "rector/rector": "^2.3"
     }
 }

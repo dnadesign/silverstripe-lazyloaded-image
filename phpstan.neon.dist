@@ -1,0 +1,9 @@
+includes:
+  - vendor/cambis/silverstan/bleedingEdge.neon
+  - phpstan-baseline.neon
+parameters:
+  level: 7
+  treatPhpDocTypesAsCertain: false
+  reportUnmatchedIgnoredErrors: false
+  paths:
+    - src
